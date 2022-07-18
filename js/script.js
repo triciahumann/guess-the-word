@@ -84,6 +84,50 @@ const makeGuess = function (guess) {
     } else {
         guessedLetters.push(guess)
         console.log(guessedLetters);
+        // letter displays when it hasn't been guessed before
+        displayGuessedLetters();
+        updateWordInProgress(guessedLetters);
     }
 };
 
+// function to update the page with the letters the play guesses 
+const displayGuessedLetters = function () {
+    // empty the list where the players guesses are displayed
+    guessedLettersElement.innerHTML = "";
+    // create a new list item for each letter inside my guessedLetters array 
+    // then add them to the unordered list (guessedLettersElement)
+    for (const letter of guessedLetters) {
+        const listItem = document.createElement("li");
+        listItem.innerText = letter;
+        guessedLettersElement.append(listItem);
+    } 
+};
+
+// updates the word in progress and replaces the circle symbols with correctly guessed letters
+const updateWordInProgress = function (guessedLetters) {
+    // changes our selected word to guess to uppercase
+    const wordUpper = word.toUpperCase();
+    // splits the word string into an array so the letter can appear in the guessedLetters array
+    const wordArray = wordUpper.split("");
+    // console.log(wordArray);
+    // check if the wordArray contains any letters from the guessedLetters array, if yes, 
+    // update the circle symbol with correct letter
+    const revealWord = [];
+    for (const letter of wordArray) {
+        if (guessedLetters.includes(letter)) {
+            revealWord.push(letter.toUpperCase());
+        } else {
+            revealWord.push("●");
+        }
+    }
+    wordInProgress.innerText = revealWord.join("");
+    playerSuccessful();
+};
+
+// check if the player successfully guess the word and won the game
+const playerSuccessful = function () {
+    if (word.toUpperCase() === wordInProgress.innerText) {
+        messageToUser.classList.add("win");
+        messageToUser.innerHTML = '<p class="highlight">You guessed correct the word! Congrats!</p>';
+    }
+};
