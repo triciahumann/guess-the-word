@@ -39,12 +39,10 @@ guessLetterButton.addEventListener("click", function (e) {
     e.preventDefault();
     // empty the text of the messageToUser
     messageToUser.innerText = "";
-
     // capture the value of user input
     const guess = letterInput.value;
-    // logs out the users guess...
-    console.log(guess);
-    // ...then empties the input box for user to guess again
+    // double check input was captured by logging out the users guess...
+    // console.log(guess);
     
     // ensure a single letter is guessed by user
     const goodGuess = validateUserInput(guess);
@@ -52,15 +50,10 @@ guessLetterButton.addEventListener("click", function (e) {
     if (goodGuess) {
         // We've got a letter! Let's guess!
         makeGuess(guess)
-    }
+    };
 
+    // ...then empties the input box for user to guess again
     letterInput.value = "";
-
-    // calling the function I created that checks user input
-    validateUserInput(input);
-
-    // ??? HOW TO "SAVE THE RESULT OF THIS FUNCTION CALL TO A VARIALBE & LOG IT OUT TO THE CONSOLE"
-    // STEP 3/6 "VALIDATE INPUT IN THE BUTTON EVENT HANDLER"
 });
 
 
