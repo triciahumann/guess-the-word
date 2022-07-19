@@ -18,7 +18,7 @@ const playAgainButton = document.querySelector(".play-again");
 // Magnolia is the starting wor to test the game out until we fetch words with API
 let word = "magnolia";
 // Array that'll contain all guessed letters
-const guessedLetters = [];
+let guessedLetters = [];
 let remainingGuesses = 8;
 
 // fetch data from file to select random word
@@ -30,7 +30,7 @@ const getWord = async function () {
     //console.log(data);
     // Grab a random word from data
     // First need to transform the data I fetched into an array and separate each word by a newline (line break)
-    const wordArray = words.split("/n");
+    const wordArray = words.split("\n");
     //console.log(wordArray);
     // Pull a random word from the array
     // Math.floor = rounds a number down to next whole number
@@ -51,7 +51,7 @@ getWord();
 const placeholder = function (word) {
     const placeholdLetters = [];
     for (const letter of word) {
-        console.log(letter);
+        //console.log(letter);
         placeholdLetters.push("●");
     }
     wordInProgress.innerText = placeholdLetters.join("");
@@ -164,6 +164,7 @@ const countRemainingGuesses = function (guess) {
     if (remainingGuesses === 0) {
         messageToUser.innerHTML = `Game over! The word was <span class="highlight">${word}</span>.`;
         numRemainingGuesses.innerText = `${remainingGuesses} guesses`;
+        startOver();
     } else if (remainingGuesses === 1) {
         numRemainingGuesses.innerText = `${remainingGuesses} guess`;
     } else {
@@ -176,8 +177,29 @@ const playerSuccessful = function () {
     if (word.toUpperCase() === wordInProgress.innerText) {
         messageToUser.classList.add("win");
         messageToUser.innerHTML = '<p class="highlight">You guessed correct the word! Congrats!</p>';
+        startOver();
     }
 };
 
+// Function to hide and show "Guess" button when game is over and restarts
+const startOver = function () {
+    guessLetterButton.classList.add("hide");
+    remainingGuessesElement.classList.add("hide");
+    guessedLettersElement.classList.add("hide");
+    playAgainButton.classList.remove("hide");
+}
 
-
+// When "play again" button is clicked, the game restarts
+playAgainButton.addEventListener("click", function () {
+    // reset all values
+    messageToUser.classList.remove(".win");
+    messageToUser.innerText = "";
+    guessedLettersElement.innerHTML = "";
+    remainingGuesses = 8;
+    guessedLetters = [];
+    numRemainingGuesses.innerText = `${remainingGuesses} guesses`;
+    guessLetterButton.classList.remove("hide");
+    playAgainButton.classList.add("hide");
+    // selects new word
+    getWord();
+});
