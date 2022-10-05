@@ -26,7 +26,7 @@ const playAgainButton = document.querySelector(".play-again");
 let word = "magnolia";
 // Array that'll contain all guessed letters
 let guessedLetters = [];
-let remainingGuesses = 6;
+let remainingGuesses = 7;
 
 // fetch data from file to select random word
 const getWord = async function () {
