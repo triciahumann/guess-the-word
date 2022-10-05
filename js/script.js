@@ -2,7 +2,7 @@
 //Uses a word list to generate a random word and user has 8 tries toguess the word.
 //Want to add a hint functionality that allows player to get a hint of a letter in the word
 //Also case expression. Currently the word appears in console.
-//Turn off this feature by commenting out line 32.
+//Turn off this feature by commenting out line 32
 
 
 // unordered list where player's guessed letters will appear
