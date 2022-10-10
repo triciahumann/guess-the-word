@@ -1,4 +1,4 @@
-//Simple Javacript Word game tat alows user to play a word guessing game.
+//Simple Javacript Word game that alows user to play a word guessing game.
 //Uses a word list to generate a random word and user has 8 tries toguess the word.
 //Want to add a hint functionality that allows player to get a hint of a letter in the word
 //Also case expression. Currently the word appears in console.
@@ -209,6 +209,7 @@ playAgainButton.addEventListener("click", function () {
     guessLetterButton.classList.remove("hide");
     playAgainButton.classList.add("hide");
     remainingGuessesElement.classList.remove("hide");
+    guessedLettersElement.classList.remove("hide");
     // selects new word
     getWord();
 });
