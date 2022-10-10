@@ -209,6 +209,6 @@ playAgainButton.addEventListener("click", function () {
     guessLetterButton.classList.remove("hide");
     playAgainButton.classList.add("hide");
     remainingGuessesElement.classList.remove("hide");
-    // selects new word to play new game with
+    // selects a new word
     getWord();
 });
